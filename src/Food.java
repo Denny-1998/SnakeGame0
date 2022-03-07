@@ -13,6 +13,10 @@ public class Food {
 
 
     public Food(GraphicsContext gc, Board b){
+        if(pos != null) {
+            delete();
+        }
+
         this.gc = gc;
         this.b = b;
 

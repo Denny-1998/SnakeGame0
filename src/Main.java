@@ -73,7 +73,7 @@ public class Main extends Application {
                     food = new Food(gc, b);
                 }
 
-                if (false){
+                if (true){
                     break;
                 }
 

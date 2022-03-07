@@ -28,9 +28,6 @@ public class Snake {
         return this.pos;
     }
 
-    public void render(){
-
-    }
 
     public void move(){
 
