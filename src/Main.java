@@ -84,11 +84,11 @@ public class Main extends Application {
             food.delete();
             //finish game win/lose
             if (win) {
-                Alert alertLost = new Alert(Alert.AlertType.INFORMATION, "You won!");
-                alertLost.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You won!");
+                alert.showAndWait();
             } else {
-                Alert alertLost = new Alert(Alert.AlertType.ERROR, "You lost!");
-                alertLost.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "You lost!");
+                alert.showAndWait();
             }
         } while (true);
     }

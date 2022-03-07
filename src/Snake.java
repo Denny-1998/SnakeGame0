@@ -10,14 +10,19 @@ public class Snake {
 
 
     public Snake(Board b, GraphicsContext gc) {
+
+        //start at random position
         int randX = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
         int randY = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
+
+        //put coordinats into position object
         pos = new Position(randX, randY);
+
+        //create previous positions arrayList
+        previousPositions = new ArrayList<>();
     }
 
-    public void previousPos(){
-         previousPositions = new ArrayList<>();
-    }
+
 
     public Position getPos (){
         return this.pos;
