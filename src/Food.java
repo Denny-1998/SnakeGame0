@@ -9,6 +9,8 @@ public class Food {
     GraphicsContext gc;
     Board b;
 
+
+
     public Food(GraphicsContext gc, Board b){
         this.gc = gc;
         this.b = b;
@@ -20,16 +22,29 @@ public class Food {
         gc.setFill(Color.BLACK);
         gc.fillOval(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
 
-
-
     }
+
+
+
+
+    public int getXPosition() {
+        return randomX;
+    }
+
+    public int getYPosition() {
+        return randomY;
+    }
+
+
+
+
 
     public void delete(){
         //gc.clearRect(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
         Square currentPos = b.getSquares(randomX, randomY);
 
         gc.setFill(currentPos.getColor());
-        gc.fillOval(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
+        gc.fillRect(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
     }
 
 }

@@ -46,7 +46,7 @@ public class Main extends Application {
 
         Food food;
         do {
-            boolean win = true;
+            boolean win = false;
 
             //TODO spawn snake
 
