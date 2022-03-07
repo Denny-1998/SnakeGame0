@@ -42,24 +42,33 @@ public class Main extends Application {
         game(b, gc);
     }
 
-    public void game(Board b, GraphicsContext gc){
+    public void game(Board b, GraphicsContext gc) {
 
         Food food;
         do {
             boolean win = true;
 
-
+            //TODO spawn snake
 
             //main gameLoop
             do {
-               food = new Food(gc, b);
 
-                break;
+                //TODO snake.move
+
+
+                food = new Food(gc, b);
+                //TODO snake eat food
+
+
+
+
+
+               break;
             } while (true);
 
 
 
-            food.move();
+            food.delete();
             //finish game win/lose
             if (win) {
                 Alert alertLost = new Alert(Alert.AlertType.INFORMATION, "You won!");

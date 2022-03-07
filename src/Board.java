@@ -28,7 +28,9 @@ public class Board {
         }
     }
 
-
+    public Square getSquares(int x, int y) {
+        return squares[x][y];
+    }
     public int getTilesize() {
         return tilesize;
     }

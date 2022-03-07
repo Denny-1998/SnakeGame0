@@ -24,13 +24,12 @@ public class Food {
 
     }
 
-    public void move(){
+    public void delete(){
         //gc.clearRect(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
+        Square currentPos = b.getSquares(randomX, randomY);
 
-        randomX = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
-        randomY = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
-
-
+        gc.setFill(currentPos.getColor());
+        gc.fillOval(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
     }
 
 }
