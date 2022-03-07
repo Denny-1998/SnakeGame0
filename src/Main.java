@@ -8,8 +8,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 
 public class Main extends Application {
+
+    private Label scoreLabel;
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -25,7 +31,7 @@ public class Main extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
         //score
-        Label scoreLabel = new Label("your score is toast");
+        scoreLabel = new Label("your score is toast");
         scoreLabel.setLayoutX(30);
         scoreLabel.setLayoutY(10);
 
@@ -44,11 +50,12 @@ public class Main extends Application {
 
     public void game(Board b, GraphicsContext gc) {
 
-        Food food;
         do {
             boolean win = false;
+            int scoreCount = 0;
 
-            //TODO spawn snake
+            Food food;
+            Snake snake = new Snake(b, gc);
 
             //main gameLoop
             do {
@@ -59,11 +66,17 @@ public class Main extends Application {
                 food = new Food(gc, b);
                 //TODO snake eat food
 
+                if( Objects.equals(food.getPos(), snake.getPos()) ){
+                    scoreCount++;
+                    scoreLabel.setText("Your score is: " + scoreCount);
+                    food.delete();
+                    food = new Food(gc, b);
+                }
 
+                if (false){
+                    break;
+                }
 
-
-
-               break;
             } while (true);
 
 

@@ -4,7 +4,8 @@ import javafx.scene.paint.Color;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Food {
-    private int randomX, randomY;
+
+    Position pos;
 
     GraphicsContext gc;
     Board b;
@@ -15,24 +16,22 @@ public class Food {
         this.gc = gc;
         this.b = b;
 
-        randomX = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
-        randomY = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
+        int randomX = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
+        int randomY = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
+        pos = new Position(randomX, randomY);
 
 
-        gc.setFill(Color.BLACK);
-        gc.fillOval(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
+
+        gc.setFill(Color.RED);
+        gc.fillOval(pos.getX() * b.getTilesize(), pos.getY() * b.getTilesize(), b.getTilesize(), b.getTilesize());
 
     }
 
 
 
 
-    public int getXPosition() {
-        return randomX;
-    }
-
-    public int getYPosition() {
-        return randomY;
+    public Position getPos(){
+        return this.pos;
     }
 
 
@@ -41,10 +40,11 @@ public class Food {
 
     public void delete(){
         //gc.clearRect(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
-        Square currentPos = b.getSquares(randomX, randomY);
+        Square currentPos = b.getSquares(pos.getX(), pos.getY());
 
-        gc.setFill(currentPos.getColor());
-        gc.fillRect(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
+        gc.setFill(Color.PINK);
+        //gc.setFill(currentPos.getColor());
+        gc.fillRect(pos.getX() * b.getTilesize(), pos.getY() * b.getTilesize(), b.getTilesize(), b.getTilesize());
     }
 
 }
