@@ -30,7 +30,6 @@ public class Food {
         randomX = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
         randomY = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
 
-        gc.moveTo(randomX, randomY);
 
     }
 
