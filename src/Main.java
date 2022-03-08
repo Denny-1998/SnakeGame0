@@ -54,18 +54,17 @@ public class Main extends Application {
             boolean win = false;
             int scoreCount = 0;
 
-            Food food;
+
             Snake snake = new Snake(b, gc);
+            Food food = new Food(gc, b);
+
 
             //main gameLoop
             do {
 
-                //TODO snake.move
+                //TODO make snake move
 
-
-                food = new Food(gc, b);
-                //TODO snake eat food
-
+                //if food and snake are in the same position, increase counter and create new food
                 if( Objects.equals(food.getPos(), snake.getPos()) ){
                     scoreCount++;
                     scoreLabel.setText("Your score is: " + scoreCount);

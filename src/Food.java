@@ -43,7 +43,7 @@ public class Food {
 
 
     public void delete(){
-        //gc.clearRect(randomX * b.getTilesize(), randomY * b.getTilesize(), b.getTilesize(), b.getTilesize());
+
         Square currentPos = b.getSquares(pos.getX(), pos.getY());
 
         gc.setFill(Color.PINK); //for debugging
