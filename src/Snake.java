@@ -1,5 +1,6 @@
 import javafx.geometry.Pos;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
@@ -17,6 +18,9 @@ public class Snake {
 
         //put coordinats into position object
         pos = new Position(randX, randY);
+
+        gc.setFill(Color.BLACK);
+        gc.fillOval(randX * b.getTilesize(), randY * b.getTilesize(), b.getTilesize(), b.getTilesize());
 
         //create previous positions arrayList
         previousPositions = new ArrayList<>();
