@@ -46,8 +46,8 @@ public class Food {
 
         Square currentPos = b.getSquares(pos.getX(), pos.getY());
 
-        gc.setFill(Color.PINK); //for debugging
-        //gc.setFill(currentPos.getColor());
+        //gc.setFill(Color.PINK); //for debugging
+        gc.setFill(currentPos.getColor());
         gc.fillRect(pos.getX() * b.getTilesize(), pos.getY() * b.getTilesize(), b.getTilesize(), b.getTilesize());
     }
 

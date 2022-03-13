@@ -60,11 +60,10 @@ public class Main extends Application {
     public void game(Board b, GraphicsContext gc, Scene scene) {
 
         do {
-            boolean win = false;
             int scoreCount = 0;
 
 
-            Snake snake = new Snake(b, gc);
+            Snake snake = new Snake(b, gc, scene);
             Food food = new Food(gc, b);
 
 
@@ -82,7 +81,9 @@ public class Main extends Application {
                 }
 
                 //TODO very important: change to something useful
-                if (scoreCount == 10){
+
+
+                if (invalidPos(snake, b)){
                     break;
                 }
 
@@ -92,13 +93,26 @@ public class Main extends Application {
 
             food.delete();
             //finish game win/lose
-            if (win) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "You won!");
-                alert.showAndWait();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "You lost!");
-                alert.showAndWait();
-            }
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You lost!");
+            alert.showAndWait();
+
         } while (true);
+    }
+
+
+    public boolean invalidPos(Snake snake, Board b){
+
+        System.out.println("x: " + snake.getPos().getX() + " y: " + snake.getPos().getY());
+        if(snake.getPos().getY() == 0){
+            return true;
+        } else if (snake.getPos().getY() == b.getTiles()){
+            return true;
+        } else if (snake.getPos().getX() == 0){
+            return true;
+        } else if (snake.getPos().getX() == b.getTiles()){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

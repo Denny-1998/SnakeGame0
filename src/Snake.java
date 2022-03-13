@@ -21,12 +21,14 @@ public class Snake {
 
     boolean gameOver;
     //added by mads
-    static List<Corner> snake = new ArrayList<Corner>();
+    //static List<Corner> snake = new ArrayList<Corner>();
     //added by mads
     public enum Dir{
         left,right,up,down;
     }
 
+
+    /*
     //added by mads
     public static class Corner{
         int x;
@@ -38,8 +40,10 @@ public class Snake {
         }
     }
 
+     */
 
-    public Snake(Board b, GraphicsContext gc) {
+
+    public Snake(Board b, GraphicsContext gc, Scene scene) {
 
         //start at random position
         int randX = ThreadLocalRandom.current().nextInt(1,  b.getTiles());
@@ -53,6 +57,10 @@ public class Snake {
 
         //create previous positions arrayList
         previousPositions = new ArrayList<>();
+
+
+
+
     }
 
 
@@ -65,6 +73,7 @@ public class Snake {
     public void move(Board b, Scene scene){
 
 
+        //from mads
         scene.addEventFilter(KeyEvent.KEY_PRESSED, key->{
             if(key.getCode()== KeyCode.W){
                 direction = Dir.up;
@@ -80,34 +89,24 @@ public class Snake {
             }
 
         });
-        //added by mads
-        snake.add(new Corner(width/2,height/2));
-        snake.add(new Corner(width/2,height/2));
-        snake.add(new Corner(width/2,height/2));
+
+
         switch (direction){
             case up:
-                snake.get(0).y--;
-                if (snake.get(0).y<0){
-                    gameOver = true;
-                }
+                previousPositions.add(pos);
+                pos = new Position(pos.getX() +1, pos.getY());
                 break;
             case down:
-                snake.get(0).y++;
-                if (snake.get(0).y>height){
-                    gameOver = true;
-                }
+                previousPositions.add(pos);
+                pos = new Position(pos.getX() -1, pos.getY());
                 break;
             case left:
-                snake.get(0).x--;
-                if (snake.get(0).x<0){
-                    gameOver = true;
-                }
+                previousPositions.add(pos);
+                pos = new Position(pos.getX(), pos.getY() -1);
                 break;
             case right:
-                snake.get(0).x++;
-                if (snake.get(0).x>width){
-                    gameOver = true;
-                }
+                previousPositions.add(pos);
+                pos = new Position(pos.getX(), pos.getY() +1);
                 break;
         }
     }
