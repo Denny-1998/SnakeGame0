@@ -19,78 +19,16 @@ public class Main extends Application {
 
     private Label scoreLabel;
     //added by mads
-    static Dir direction = Dir.left;
-    static int width = 20;
-    static int height = 20;
-    static int cornersize = 25;
-    //added by mads
-    static List<Corner> snake = new ArrayList<>();
-    //added by mads
-    public enum Dir{
-        left,right,up,down;
-    }
-    //added by mads
-    public static class Corner{
-        int x;
-        int y;
 
-        public Corner(int x, int y){
-            this.x = x;
-            this.y = y;
-        }
-    }
+
+
+
 
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //added by mads
-        Scene scene = new Scene(uiRoot,width*cornersize,height*cornersize);
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, key->{
-            if(key.getCode()== KeyCode.W){
-                direction = Dir.up;
-            }
-            if(key.getCode()== KeyCode.A){
-                direction = Dir.left;
-            }
-            if(key.getCode()== KeyCode.D){
-                direction = Dir.right;
-            }
-            if(key.getCode()== KeyCode.S){
-                direction = Dir.down;
-            }
 
-        });
-        //added by mads
-        snake.add(new Corner(width/2,height/2));
-        snake.add(new Corner(width/2,height/2));
-        snake.add(new Corner(width/2,height/2));
-        switch (direction){
-            case up:
-                snake.get(0).y--;
-                if (snake.get(0).y<0){
-                    gameOver = true;
-                }
-                break;
-            case down:
-                snake.get(0).y++;
-                if (snake.get(0).y>height){
-                    gameOver = true;
-                }
-                break;
-            case left:
-                snake.get(0).x--;
-                if (snake.get(0).x<0){
-                    gameOver = true;
-                }
-                break;
-            case right:
-                snake.get(0).x++;
-                if (snake.get(0).x>width){
-                    gameOver = true;
-                }
-                break;
-        }
         //create scene
         Pane uiRoot = new Pane();
         Scene scene = new Scene(uiRoot, 640, 660);
@@ -116,10 +54,10 @@ public class Main extends Application {
 
         Board b = new Board(gc);
 
-        game(b, gc);
+        game(b, gc, scene);
     }
 
-    public void game(Board b, GraphicsContext gc) {
+    public void game(Board b, GraphicsContext gc, Scene scene) {
 
         do {
             boolean win = false;
@@ -133,7 +71,7 @@ public class Main extends Application {
             //main gameLoop
             do {
 
-                //TODO make snake move
+                snake.move(b, scene);
 
                 //if food and snake are in the same position, increase counter and create new food
                 if( Objects.equals(food.getPos(), snake.getPos()) ){
@@ -143,7 +81,8 @@ public class Main extends Application {
                     food = new Food(gc, b);
                 }
 
-                if (true){
+                //TODO very important: change to something useful
+                if (scoreCount == 10){
                     break;
                 }
 
